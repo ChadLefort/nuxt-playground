@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Nav />
-    <Nuxt />
+    <client-only>
+      <Nav />
+      <Nuxt />
+    </client-only>
   </div>
 </template>

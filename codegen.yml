@@ -3,6 +3,7 @@ schema: 'https://api.spacex.land/graphql/'
 documents: ./apollo/queries/*.ts
 generates:
   ./apollo/types.d.ts:
+    schema: './apollo/local-schema.graphql'
     plugins:
       - typescript
       - typescript-operations

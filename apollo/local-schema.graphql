@@ -1,0 +1,7 @@
+extend type Launch {
+  notes: String!
+}
+
+type Mutation {
+  addNotes(id: ID!, notes: String!): String!
+}

@@ -1,8 +1,9 @@
-import gql from 'graphql-tag';
+import { gql } from 'graphql-tag';
 
 export const GET_PAST_LAUNCHES = gql`
   query getPastLaunches {
     launchesPast {
+      notes @client
       id
       mission_name
       launch_date_local

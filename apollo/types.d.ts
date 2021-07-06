@@ -237,13 +237,14 @@ export type Launch = {
   links?: Maybe<LaunchLinks>;
   mission_id?: Maybe<Array<Maybe<Scalars['String']>>>;
   mission_name?: Maybe<Scalars['String']>;
+  notes: Scalars['String'];
   rocket?: Maybe<LaunchRocket>;
+  ships?: Maybe<Array<Maybe<Ship>>>;
   static_fire_date_unix?: Maybe<Scalars['Date']>;
   static_fire_date_utc?: Maybe<Scalars['Date']>;
   telemetry?: Maybe<LaunchTelemetry>;
   tentative_max_precision?: Maybe<Scalars['String']>;
   upcoming?: Maybe<Scalars['Boolean']>;
-  ships?: Maybe<Array<Maybe<Ship>>>;
 };
 
 export type LaunchFind = {
@@ -446,12 +447,19 @@ export type MissionsFind = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addNotes: Scalars['String'];
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
   /** insert data into the table: "users" */
   insert_users?: Maybe<Users_Mutation_Response>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
+};
+
+
+export type MutationAddNotesArgs = {
+  id: Scalars['ID'];
+  notes: Scalars['String'];
 };
 
 
@@ -1320,6 +1328,34 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type AddNotesMutationVariables = Exact<{
+  id: Scalars['ID'];
+  notes: Scalars['String'];
+}>;
+
+
+export type AddNotesMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'addNotes'>
+);
+
+export type GetLaunchByIdQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type GetLaunchByIdQuery = (
+  { __typename?: 'Query' }
+  & { launch?: Maybe<(
+    { __typename?: 'Launch' }
+    & Pick<Launch, 'notes' | 'id' | 'mission_name'>
+    & { rocket?: Maybe<(
+      { __typename?: 'LaunchRocket' }
+      & Pick<LaunchRocket, 'rocket_name' | 'rocket_type'>
+    )> }
+  )> }
+);
+
 export type GetPastLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1327,7 +1363,7 @@ export type GetPastLaunchesQuery = (
   { __typename?: 'Query' }
   & { launchesPast?: Maybe<Array<Maybe<(
     { __typename?: 'Launch' }
-    & Pick<Launch, 'id' | 'mission_name' | 'launch_date_local'>
+    & Pick<Launch, 'notes' | 'id' | 'mission_name' | 'launch_date_local'>
     & { launch_site?: Maybe<(
       { __typename?: 'LaunchSite' }
       & Pick<LaunchSite, 'site_name_long'>

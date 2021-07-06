@@ -9,17 +9,18 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   css: [],
-  plugins: ['~/plugins/bootstrap.ts', '~plugins/apollo.ts'],
+  plugins: [
+    { src: '~/plugins/bootstrap.ts', mode: 'client' },
+    '~plugins/apollo.ts'
+  ],
   components: true,
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
-    'nuxt-vite',
     '@nuxtjs/composition-api/module',
     'nuxt-typed-vuex'
   ],
   modules: [
-    '@nuxtjs/axios',
     '@nuxtjs/apollo',
     [
       'nuxt-fontawesome',
@@ -34,19 +35,16 @@ export default {
       }
     ]
   ],
-  axios: {},
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: 'https://api.spacex.land/graphql'
-      }
+      default: '~/plugins/apollo-config.ts'
     }
   },
   router: {
     linkExactActiveClass: 'active'
   },
-  // vite: { ssr: true },
   build: {
+    analyze: true,
     transpile: ['@vue/apollo-composable']
   },
   generate: {
