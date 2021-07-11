@@ -28,7 +28,7 @@
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
     "@nuxtjs/axios": "^5.13.1",
-    "@vue/apollo-composable": "^4.0.0-alpha.12",
+    "@vue/apollo-composable": "^4.0.0-alpha.13",
     "bootstrap": "^5.0.1",
     "core-js": "^3.9.1",
     "graphql-tag": "^2.12.4",
