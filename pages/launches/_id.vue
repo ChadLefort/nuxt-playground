@@ -1,7 +1,7 @@
 <template>
   <div class="container p-4">
     <div class="row">
-      <div class="col col-xxl">
+      <div class="col">
         <div v-if="loading" class="d-flex justify-content-center">
           <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
